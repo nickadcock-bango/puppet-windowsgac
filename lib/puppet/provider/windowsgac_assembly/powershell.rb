@@ -1,3 +1,5 @@
+require_relative '../../../puppet_x/windowsgac_scripts'
+
 Puppet::Type.type(:windowsgac_assembly).provide(:powershell) do
     confine :osfamily => :windows
     commands :powershell => "powershell.exe"
@@ -6,9 +8,7 @@ Puppet::Type.type(:windowsgac_assembly).provide(:powershell) do
         assembly_path = resource[:path]
 
         begin
-            script = "
-            $full_name = [System.Reflection.AssemblyName]::GetAssemblyName('#{assembly_path}').FullName
-            [System.Reflection.Assembly]::Load($full_name)"
+            script = WindowsGacScripts.get_exist_script(assembly_path)
             powershell(script)
             return true
         rescue Puppet::ExecutionFailure => e
@@ -18,20 +18,14 @@ Puppet::Type.type(:windowsgac_assembly).provide(:powershell) do
 
     def create
         assembly_path = resource[:path]
-        script = "
-        [System.Reflection.Assembly]::Load('System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a')
-        $publish = New-Object System.EnterpriseServices.Internal.Publish
-        $publish.GacInstall('#{assembly_path}')"
+        script = WindowsGacScripts.get_create_script(assembly_path)
         powershell(script)
         return true
     end
 
     def destroy
         assembly_path = resource[:path]
-        script = "
-        [System.Reflection.Assembly]::Load('System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a')
-        $publish = New-Object System.EnterpriseServices.Internal.Publish
-        $publish.GacRemove('#{assembly_path}')"
+        script = WindowsGacScripts.get_destroy_script(assembly_path)
         powershell(script)
         return true
     end
