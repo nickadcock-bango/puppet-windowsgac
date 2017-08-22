@@ -3,10 +3,12 @@
     "version": "0.1.0",
     "author": "Zappy Shu",
     "summary": "Installs and removes .NET assemblies in the Global Assembly Cache",
-    "licence": "Apache-2.0",
+    "license": "Apache-2.0",
     "source": "https://github.com/zappy-shu/puppet-windowsgac",
     "progect_page": "https://github.com/zappy-shu/puppet-windowsgac",
-    "dependencies": [],
+    "dependencies": [
+        {"name":"puppetlabs/powershell","version_requirement":">= 1.0.1 < 3.0.0"}
+    ],
     "data_provider": "hiera",
     "operatingsystem_support": [
         {
