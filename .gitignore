@@ -10,6 +10,21 @@
 /test/version_tmp/
 /tmp/
 
+# Puppet
+import/
+/spec/fixtures/
+.tmp
+*.lock
+*.local
+.rbenv-gemsets
+.ruby-version
+build/
+docs/
+tests/
+log/
+junit/
+tmp/
+
 # Used by dotenv library to load environment variables.
 # .env
 
