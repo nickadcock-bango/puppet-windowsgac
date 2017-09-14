@@ -1,6 +1,6 @@
 {
     "name": "zappyshu-windowsgac",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": "Zappy Shu",
     "summary": "Installs and removes .NET assemblies in the Global Assembly Cache",
     "license": "Apache-2.0",
@@ -19,6 +19,11 @@
                 "2012R2"
             ]
         }
+    ],
+    "tags": [
+      "dot-net",
+      "global-assembly-cache",
+      "gac"
     ],
     "requirements": [
         {
